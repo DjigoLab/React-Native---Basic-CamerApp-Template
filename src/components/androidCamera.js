@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+
 } from 'react-native';
 import Camera from 'react-native-camera';
 
@@ -22,6 +23,7 @@ class androidCamera extends Component {
           aspect={Camera.constants.Aspect.fill}>
           <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
         </Camera>
+
       </View>
     );
   }

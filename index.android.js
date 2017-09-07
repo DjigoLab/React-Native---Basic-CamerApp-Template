@@ -6,14 +6,17 @@
  import React from 'react';
  import { AppRegistry, Text, View, Button, StyleSheet,Image } from 'react-native';
  import { StackNavigator } from 'react-navigation';
- import Camera from 'react-native-camera';
 
+
+ import Camera from 'react-native-camera';
+ import Splash from "./src/components/Splash";
  import Login from './src/components/Login';
-import androidCamera from './src/components/androidCamera';
+ import androidCamera from './src/components/androidCamera';
+
 
  class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Sidapp Titulo',
+    title: 'Bienvenid@',
   };
   render() {
     const { navigate } = this.props.navigation;
@@ -22,13 +25,22 @@ import androidCamera from './src/components/androidCamera';
          style={styles.container}
          source={require('./src/components/img/background.jpg')}
        >
-      <View >
-        <Text style={styles.h1}>Bienvenido a Sidapp!</Text>
+
+
+        <Text style={styles.h1}>Bienvenido a Camera!</Text>
+
+        <Image
+          style={styles.logo}
+          source={require('./src/components/img/logo.png')}/>
+
         <Button
           onPress={() => navigate('androidCamera')}
           title="Comienza la prueba"
         />
-      </View>
+        <Button onPress={() => navigate('results')}
+        title="takemetoresutl"/>
+    
+
       </Image>
     );
   }
@@ -43,8 +55,11 @@ class androCamera extends React.Component {
           ref={(cam) => {
             this.camera = cam;
           }}
+
           style={camerastyles.preview}
-          aspect={Camera.constants.Aspect.fill}>
+          aspect={Camera.constants.Aspect.fill}
+          type={Camera.constants.Type.front}
+          >
           <Text style={camerastyles.capture} onPress={this.takePicture.bind(this)}>[Pic]</Text>
         </Camera>
       </View>
@@ -59,6 +74,15 @@ class androCamera extends React.Component {
       .catch(err => console.error(err));
   }
 }
+
+class SplashScreen extends React.Component{
+  render() {
+    return (
+      <View><Splash/></View>
+    )
+}
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -69,9 +93,15 @@ const styles = StyleSheet.create({
 
   h1:{
     fontSize: 30,
-    marginTop:100,
-    marginBottom: 300,
     color: 'white',
+
+
+  },
+
+  logo:{
+    width: 300,
+    height: 300,
+
 
 
   },
@@ -102,7 +132,8 @@ const camerastyles = StyleSheet.create({
 
  const DEFINITIVE = StackNavigator({
    Home: { screen: HomeScreen },
-   androidCamera: { screen: androCamera }
+   androidCamera: { screen: androCamera },
+
  });
 
  AppRegistry.registerComponent('DEFINITIVE', () => DEFINITIVE);

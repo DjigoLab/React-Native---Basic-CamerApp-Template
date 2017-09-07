@@ -5,7 +5,7 @@ export default class Login extends React.Component{
   static navigationOptions = {
       title: 'Login'
     };
-    
+
   render(){
 
     return(
@@ -24,11 +24,11 @@ export default class Login extends React.Component{
 
   onLogin(){
     Alert.alert(
-      'Bienvenido a Sidapp',
+      'Bienvenido a Camera',
       'Haz click en Aceptar para acceder a la cámara',
       [
         {text: 'Cancelar'},
-        {text: 'Las pollas tiesas'}
+        {text: 'Go'}
       ]
     )
 
